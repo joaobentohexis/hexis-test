@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: httpbin
+  labels:
+    app: httpbin
+spec:
+  replicas: 1
+  revisionHistoryLimit: 10
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 20%
+      maxSurge: 25%
+  selector:
+    matchLabels:
+      app: httpbin
+  template:
+    metadata:
+      labels:
+        app: httpbin
+    spec:
+      containers:
+        - name: httpbin
+          image: "kennethreitz/httpbin"
+          ports:
+          - containerPort: 80
+            name: http
+            protocol: TCP
+          # livenessProbe:
+          #   httpGet:
+          #     port: 80
+          #     path: /status
+          # readinessProbe:
+          #   httpGet:
+          #     port: 80
+          #     path: /ready

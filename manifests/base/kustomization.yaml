@@ -1,0 +1,5 @@
+resources:
+  - "httpbin.yaml"
+  - "httpbin-service.yaml"
+generatorOptions:
+  disableNameSuffixHash: true

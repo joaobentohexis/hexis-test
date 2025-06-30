@@ -1,0 +1,6 @@
+resources:
+  - ../../base
+  - "httpbin-hpa.yaml"
+images:
+  - name: kennethreitz/httpbinh
+    newTag: "latest"
